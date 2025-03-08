@@ -22,12 +22,15 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public Optional<User> login(String username, String rawPassword) {
-        return userRepository.findByUsername(username)
+    public Optional<User> login(String email, String rawPassword) {
+        return userRepository.findByEmail(email)
                 .filter(user -> passwordEncoder.matches(rawPassword, user.getPassword())); // Use hashed password comparison
     }
 
     public boolean existsByUsername(String username) {
         return userRepository.findByUsername(username).isPresent();
+    }
+    public boolean existsByEmail(String email) {
+        return userRepository.findByEmail(email).isPresent();
     }
 }

@@ -18,7 +18,7 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable()) // Updated syntax
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/auth/register", "/auth/login").permitAll()  // Public Endpoints
+                        .requestMatchers("/auth/register", "/auth/login","/password/forgot","password/reset").permitAll()  // Public Endpoints
                         .anyRequest().authenticated()  // Secure Other Endpoints
                 )
                 .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS));

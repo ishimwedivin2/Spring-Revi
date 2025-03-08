@@ -24,7 +24,7 @@ public class PasswordResetService {
     private EmailService emailService;
 
     public void createPasswordResetToken(String email) {
-        User user = userRepository.findByUsername(email)
+        User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
         String token = UUID.randomUUID().toString();

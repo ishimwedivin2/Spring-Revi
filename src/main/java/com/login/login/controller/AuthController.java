@@ -37,11 +37,11 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody User user) {
-        Optional<User> loggedInUser = userService.login(user.getUsername(), user.getPassword());
+        Optional<User> loggedInUser = userService.login(user.getEmail(), user.getPassword());
         if (loggedInUser.isPresent()) {
             return ResponseEntity.ok("Login successful"); // Ideally return a JWT token instead
         } else {
-            return ResponseEntity.badRequest().body("Invalid username or password");
+            return ResponseEntity.badRequest().body("Invalid email or password");
         }
     }
 }
