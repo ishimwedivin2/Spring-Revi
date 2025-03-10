@@ -45,4 +45,35 @@ public class AuthController {
         }
     }
 
+    // Get user by ID
+    @GetMapping("/{id}")
+    public Optional<User> getUserById(@PathVariable Long id) {
+        return userService.getUserById(id);
+    }
+
+    // Search user by username
+    @GetMapping("/search/username/{username}")
+    public Optional<User> getUserByUsername(@PathVariable String username) {
+        return userService.getUserByUsername(username);
+    }
+
+    // Search user by email
+    @GetMapping("/search/email/{email}")
+    public Optional<User> getUserByEmail(@PathVariable String email) {
+        return userService.getUserByEmail(email);
+    }
+
+    // Update user
+    @PutMapping("/{id}")
+    public User updateUser(@PathVariable Long id, @RequestBody User updatedUser) {
+        return userService.updateUser(id, updatedUser);
+    }
+
+    // Delete user
+    @DeleteMapping("/{id}")
+    public String deleteUser(@PathVariable Long id) {
+        userService.deleteUser(id);
+        return "User deleted successfully";
+    }
+
 }
